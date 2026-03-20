@@ -40,8 +40,8 @@ public class VarDemo {
          //  System.out.println(number + " -> " + ((Object) number).getClass().getSimpleName());
 
         // TODO: Пример 2 — строка
-        //   var text = "Java";
-        //   System.out.println(text + " -> " + text.getClass().getSimpleName());
+           var text = "Java";
+           System.out.println(text + " -> " + text.getClass().getSimpleName());
 
         // TODO: Пример 3 — ArrayList
         //   var list = new ArrayList<>(Arrays.asList("один", "два"));
