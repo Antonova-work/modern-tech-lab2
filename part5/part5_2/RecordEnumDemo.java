@@ -43,7 +43,14 @@ public class RecordEnumDemo {
             //      };
             //   2. if (kelvin < 0) throw new IllegalArgumentException("Ниже абсолютного нуля");
             // ▼ ВАШ КОД ЗДЕСЬ ▼
-
+            double celsiusValue = switch (unit) {
+                case CELSIUS -> value;
+                case FAHRENHEIT -> (value - 32) * 5 / 9;
+                case KELVIN -> value - 273.15;
+            };
+            if (celsiusValue < -273.15) {
+                throw new IllegalArgumentException("Температура ниже абсолютного нуля!");
+            }
             // ▲ КОНЕЦ ВАШЕГО КОДА ▲
         }
 
@@ -109,26 +116,27 @@ public class RecordEnumDemo {
         ADD {
             @Override
             public double apply(double a, double b) {
-                return 0; // TODO: верните a + b
+                return a+b; // TODO: верните a + b
             }
         },
         SUBTRACT {
             @Override
             public double apply(double a, double b) {
-                return 0; // TODO: верните a - b
+                return a-b; // TODO: верните a - b
             }
         },
         MULTIPLY {
             @Override
             public double apply(double a, double b) {
-                return 0; // TODO: верните a * b
+                return a*b; // TODO: верните a * b
             }
         },
         DIVIDE {
             @Override
             public double apply(double a, double b) {
                 // TODO: проверьте b != 0, иначе throw new ArithmeticException("Деление на ноль")
-                return 0; // TODO: верните a / b (с проверкой на ноль)
+                if (b == 0) throw new ArithmeticException("Деление на ноль");
+                return a / b; // TODO: верните a / b (с проверкой на ноль)
             }
         };
 
