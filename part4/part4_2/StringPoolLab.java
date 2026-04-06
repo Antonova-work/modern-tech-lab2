@@ -40,33 +40,33 @@ public class StringPoolLab {
 
         System.out.println("=== Сравнение строк ===\n");
 
-        // Прогноз: ____ (true/false). Причина: ____
+        // Прогноз: true (true/false). Причина: Оба ссылаются на один и тот же объект в String Pool.
         System.out.println("s1 == s2      : " + (s1 == s2));
         System.out.println("s1.equals(s2) : " + s1.equals(s2));
         System.out.println();
 
         // TODO: запишите свой прогноз ПЕРЕД запуском
-        // Прогноз: ____ (true/false). Причина: ____
+        // Прогноз: false (true/false). Причина: new String всегда создает новый объект в Heap.
         System.out.println("s1 == s3      : " + (s1 == s3));
         System.out.println("s1.equals(s3) : " + s1.equals(s3));
         System.out.println();
 
-        // Прогноз: ____ (true/false). Причина: ____
+        // Прогноз: false (true/false). Причина: Это два разных объекта в памяти, хоть текст и одинаковый.
         System.out.println("s3 == s4      : " + (s3 == s4));
         System.out.println("s3.equals(s4) : " + s3.equals(s4));
         System.out.println();
 
-        // Прогноз: ____ (true/false). Причина: ____
+        // Прогноз: true (true/false). Причина: Вычисляется компилятором, результат берется из пула.
         System.out.println("s1 == s5      : " + (s1 == s5));
         System.out.println("s1.equals(s5) : " + s1.equals(s5));
         System.out.println();
 
-        // Прогноз: ____ (true/false). Причина: ____
+        // Прогноз: false (true/false). Причина: Выполняется в рантайме, создает новый объект в Heap.
         System.out.println("s1 == s6      : " + (s1 == s6));
         System.out.println("s1.equals(s6) : " + s1.equals(s6));
         System.out.println();
 
-        // Прогноз: ____ (true/false). Причина: ____
+        // Прогноз: true (true/false). Причина: intern() возвращает ссылку на строку именно из String Pool.
         System.out.println("s1 == s7      : " + (s1 == s7));
         System.out.println("s1.equals(s7) : " + s1.equals(s7));
         System.out.println();
@@ -78,7 +78,7 @@ public class StringPoolLab {
         sb.append('H').append('e').append('l').append('l').append('o');
         String s8 = sb.toString();
 
-        // Прогноз: ____ (true/false). Причина: ____
+        // Прогноз: false (true/false). Причина: Причина: sb.toString() всегда создает новый объект в куче (Heap), а не берет его из пула.
         System.out.println("s1 == s8      : " + (s1 == s8));
         System.out.println("s1.equals(s8) : " + s1.equals(s8));
     }
