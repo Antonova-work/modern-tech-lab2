@@ -87,29 +87,35 @@ public class ValidationFramework {
         public static List<String> validate(Object obj) {
 
             List<String> errors = new ArrayList<>();
-            for (Field field : obj.getClass().getDeclaredFields()) {
+            Field[] fields = obj.getClass().getDeclaredFields();
+
+            for (Field field : fields) {
                 field.setAccessible(true);
                 try {
+                    Object value = field.get(obj);
+
                     if (field.isAnnotationPresent(NotEmpty.class)) {
-                        String s = (String) field.get(obj);
                         NotEmpty ann = field.getAnnotation(NotEmpty.class);
-                        if (s == null || s.isEmpty()) {
+                        if (value == null || value.toString().isEmpty()) {
                             errors.add(ann.message());
                         }
                     }
+
                     if (field.isAnnotationPresent(Range.class)) {
-                        int v = field.getInt(obj);
                         Range ann = field.getAnnotation(Range.class);
-                        if (v < ann.min() || v > ann.max()) {
-                            errors.add(ann.message());
+                        if (value instanceof Integer v) {
+                            if (v < ann.min() || v > ann.max()) {
+                                errors.add(ann.message());
+                            }
                         }
                     }
                 } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
             }
+
             // ▼ ВАШ КОД ЗДЕСЬ ▼
-            return new ArrayList<>();//???????????
+            return errors;
             // ▲ КОНЕЦ ВАШЕГО КОДА ▲
         }
     }
