@@ -45,7 +45,8 @@ public class TextAnalyzer {
      */
     public int wordCount() {
         // ▼ ВАШ КОД ЗДЕСЬ ▼
-        return 0; // TODO: верните text.split(" ").length
+        if (text == null || text.isEmpty()) return 0;
+        return text.trim().split("\\s+").length; // TODO: верните text.split(" ").length
         // ▲ КОНЕЦ ВАШЕГО КОДА ▲
     }
 
@@ -57,13 +58,17 @@ public class TextAnalyzer {
      */
     public String longestWord() {
 
-        String[] words = text.split(" ");
-        String best = words[0];
         // ▼ ВАШ КОД ЗДЕСЬ ▼
-
-
+        String[] words = text.split("\\s+");
+        String best = words[0];
+        String longest = "";
+        for (String word : words) {
+            if (word.length() > longest.length()) {
+                longest = word;
+            }
+        }
+        return longest;
         // ▲ КОНЕЦ ВАШЕГО КОДА ▲
-        return best;
 
     }
 
@@ -75,13 +80,11 @@ public class TextAnalyzer {
      * добавляйте слова от последнего к первому.
      */
     public String reverseWords() {
-        String[] words = text.split(" ");
+        String[] words = text.split("\\s+");
         StringBuilder sb = new StringBuilder();
         for (int i = words.length - 1; i >= 0; i--) {
-            if (i < words.length - 1) {
-                sb.append(' ');
-            }
             sb.append(words[i]);
+            if (i > 0) sb.append(" ");
         }
         return sb.toString();
 
@@ -97,16 +100,15 @@ public class TextAnalyzer {
      */
     public int countOccurrences(String target) {
         // ▼ ВАШ КОД ЗДЕСЬ ▼
-        String lower = text.toLowerCase();
-        String t = target.toLowerCase();
+        String[] words = text.toLowerCase().split("\\s+");
+        String lowerTarget = target.toLowerCase();
         int count = 0;
-        int from = 0;
-        int idx;
-        while ((idx = lower.indexOf(t, from)) != -1) {
-            count++;
-            from = idx + 1;
+        for (String word : words) {
+            if (word.equals(lowerTarget)) {
+                count++;
+            }
         }
-        return 0; // ???
+        return count;
         // ▲ КОНЕЦ ВАШЕГО КОДА ▲
     }
 
