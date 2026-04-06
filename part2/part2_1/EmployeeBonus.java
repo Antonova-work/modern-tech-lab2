@@ -18,7 +18,7 @@ package part2.part2_1;
 public class EmployeeBonus {
     public static void main(String[] args) {
         Employee[] team = {
-            new Manager("Ольга__", 120000, 5),
+            new Manager("Ольга", 120000, 5),
             new Developer("Андрей", 95000, "Java"),
             new Developer("Мария", 100000, "Python"),
             new Intern("Стажёр Петя", 30000)
